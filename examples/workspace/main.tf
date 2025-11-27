@@ -32,7 +32,7 @@ resource "azurerm_api_management" "apim" {
   location            = "westeurope"
   publisher_name      = "publisher"
   publisher_email     = "mail@mail.org"
-  sku_name            = "Developer_1"
+  sku_name            = "Premium_1"
 }
 
 module "defaults" {
@@ -46,4 +46,8 @@ module "defaults" {
 
   # apim
   apim_resource_id = azurerm_api_management.apim.id
+  apim_workspace = {
+    name        = "apim-workspace"
+    description = "APIM workspace"
+  }
 }
