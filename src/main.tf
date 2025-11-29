@@ -37,10 +37,11 @@ resource "azurerm_role_assignment" "reader_group_apim_reader" {
 # Decentral Operating Model for API Management
 ##############################################
 resource "azapi_resource" "apim_workspace" {
-  count     = var.apim_workspace != null ? 1 : 0
-  type      = "Microsoft.ApiManagement/service/workspaces@2024-05-01"
-  name      = var.apim_workspace.name
-  parent_id = var.apim_resource_id
+  count                     = var.apim_workspace != null ? 1 : 0
+  type                      = "Microsoft.ApiManagement/service/workspaces@2024-05-01"
+  name                      = var.apim_workspace.name
+  parent_id                 = var.apim_resource_id
+  schema_validation_enabled = false # needed due to old azapi provider version in landing zone
 
   body = {
     properties = {
