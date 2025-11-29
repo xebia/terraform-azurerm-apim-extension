@@ -46,7 +46,7 @@ resource "azapi_resource" "apim_workspace" {
   body = {
     properties = {
       description = var.apim_workspace.description
-      displayName = var.apim_workspace.name
+      displayName = coalesce(var.apim_workspace.display_name, var.apim_workspace.name)
     }
   }
 }
